@@ -9,12 +9,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.purduerugby.jwlehman93.purduerugbyapp_android.DrawerItemClickListener;
+import com.purduerugby.jwlehman93.purduerugbyapp_android.DrawerMenuItemProvider;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.R;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private String[] mMenuItems;
+    private List<String> drawerMenuItems;
     private DrawerLayout mDrawerLayout;
     private ListView mListView;
 
@@ -22,13 +23,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mMenuItems = new String[3];
-        mMenuItems[0] = "Home";
-        mMenuItems[1] = "About";
-        mMenuItems[2] = "Roster";
+        drawerMenuItems = DrawerMenuItemProvider.getMenuItems();
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mListView = (ListView) findViewById(R.id.menu_drawer);
-        mListView.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_item, mMenuItems));
-        mListView.setOnItemClickListener(new DrawerItemClickListener(this));
+        mListView.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_item, drawerMenuItems));
+        mListView.setOnItemClickListener(new DrawerItemClickListener(this.getApplicationContext()));
         }
 }
