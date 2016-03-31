@@ -9,7 +9,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.purduerugby.jwlehman93.purduerugbyapp_android.Activities.AboutActivity;
+import com.purduerugby.jwlehman93.purduerugbyapp_android.Activities.CalendarActivity;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.Activities.MainActivity;
+import com.purduerugby.jwlehman93.purduerugbyapp_android.Activities.RosterActivity;
 
 
 /**so if I want to start a new activity from a separate class than the current activitydo I pass a context from the class I want to start the new activity from? My app just closes whenever I try to start the new activity
@@ -39,20 +41,27 @@ public class DrawerItemClickListener extends Activity implements ListView.OnItem
                break;
            }
            case 1: {
-               Toast.makeText(context,"about clicked", Toast.LENGTH_SHORT).show();
+               Toast.makeText(context,"roster clicked", Toast.LENGTH_SHORT).show();
                Intent intent = new Intent();
-               intent.setClass(context, AboutActivity.class);
+               intent.setClass(context, RosterActivity.class);
                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                context.startActivity(intent);
                break;
            }
-           /*
            case 2: {
-               Intent intent = new Intent(context, RosterActivity.class);
-               startActivity(intent);
+               Toast.makeText(context,"calendar clicked", Toast.LENGTH_SHORT).show();
+               Intent intent = new Intent(context, CalendarActivity.class);
+               intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+               context.startActivity(intent);
                break;
            }
-           */
+           case 3: {
+               Toast.makeText(context,"about clicked", Toast.LENGTH_SHORT).show();
+               Intent intent = new Intent(context, AboutActivity.class);
+               intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+               context.startActivity(intent);
+               break;
+           }
            default:
                break;
        }

@@ -16,17 +16,17 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private List<String> drawerMenuItems;
-    private DrawerLayout mDrawerLayout;
-    private ListView mListView;
+    private DrawerLayout leftDrawerLayout;
+    private ListView drawerListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         drawerMenuItems = DrawerMenuItemProvider.getMenuItems();
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mListView = (ListView) findViewById(R.id.menu_drawer);
-        mListView.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_item, drawerMenuItems));
-        mListView.setOnItemClickListener(new DrawerItemClickListener(this.getApplicationContext()));
+        leftDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerListView = (ListView) findViewById(R.id.menu_drawer);
+        drawerListView.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_item, drawerMenuItems));
+        drawerListView.setOnItemClickListener(new DrawerItemClickListener(this.getApplicationContext()));
         }
 }

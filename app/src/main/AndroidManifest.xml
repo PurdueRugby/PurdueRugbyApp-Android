@@ -15,7 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.AboutActivity"></activity>
+        <activity android:name=".Activities.AboutActivity" />
+        <activity android:name=".Activities.RosterActivity" />
+        <activity android:name=".Activities.CalendarActivity"></activity>
     </application>
 
 </manifest>
