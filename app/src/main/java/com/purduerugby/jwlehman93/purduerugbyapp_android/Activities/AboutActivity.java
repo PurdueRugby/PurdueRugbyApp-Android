@@ -22,7 +22,7 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         drawerMenuItems = DrawerMenuItemProvider.getMenuItems();
         leftDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerListView = (ListView) findViewById(R.id.menu_drawer);

@@ -14,7 +14,7 @@ import com.purduerugby.jwlehman93.purduerugbyapp_android.R;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
     private List<String> drawerMenuItems;
     private DrawerLayout leftDrawerLayout;
     private ListView drawerListView;
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         drawerMenuItems = DrawerMenuItemProvider.getMenuItems();
         leftDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerListView = (ListView) findViewById(R.id.menu_drawer);

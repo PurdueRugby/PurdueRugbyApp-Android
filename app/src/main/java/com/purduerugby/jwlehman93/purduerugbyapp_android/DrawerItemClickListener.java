@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.purduerugby.jwlehman93.purduerugbyapp_android.Activities.AboutActivity;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.Activities.CalendarActivity;
-import com.purduerugby.jwlehman93.purduerugbyapp_android.Activities.MainActivity;
+import com.purduerugby.jwlehman93.purduerugbyapp_android.Activities.HomeActivity;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.Activities.RosterActivity;
 
 
@@ -36,7 +36,7 @@ public class DrawerItemClickListener extends Activity implements ListView.OnItem
            case 0: {
                Toast.makeText(context,"Home clicked", Toast.LENGTH_SHORT).show();
                Intent intent = new Intent();
-               intent.setClass(context, MainActivity.class);
+               intent.setClass(context, HomeActivity.class);
                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                context.startActivity(intent);
                break;
@@ -55,7 +55,7 @@ public class DrawerItemClickListener extends Activity implements ListView.OnItem
                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                context.startActivity(intent);
                break;
-           }t 
+           }
            case 3: {
                Toast.makeText(context,"about clicked", Toast.LENGTH_SHORT).show();
                Intent intent = new Intent(context, AboutActivity.class);
