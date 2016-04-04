@@ -21,8 +21,7 @@ public class RosterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_roster);
         drawerMenuItems = DrawerMenuItemProvider.getMenuItems();
         leftDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerListView = (ListView) findViewById(R.id.menu_drawer);

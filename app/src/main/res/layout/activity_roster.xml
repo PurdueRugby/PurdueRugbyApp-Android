@@ -7,16 +7,11 @@
     android:background="@color/colorPrimaryDark"
     tools:context=".Activities.HomeActivity">
 
-    <FrameLayout
-        android:id="@+id/main_content_frame"
+    <fragment
+        android:id="@+id/roster_fragment"
+        android:name="com.purduerugby.jwlehman93.purduerugbyapp_android.fragments.RosterFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/vintagebannerinverse"
-            android:layout_alignParentTop="true"/>
-    </FrameLayout>
+        android:layout_height="match_parent"/>
 
     <ListView
         android:id="@+id/menu_drawer"
