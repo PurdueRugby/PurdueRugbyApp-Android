@@ -11,7 +11,7 @@ public abstract class DrawerMenuItemProvider {
     private static List<String> menuItems = new ArrayList<String>() {{
         add("Home");
         add("Roster");
-        add("CalendarActivity");
+        add("Calendar");
         add("About");
 
     }};

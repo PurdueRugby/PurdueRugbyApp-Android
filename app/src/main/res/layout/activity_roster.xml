@@ -7,11 +7,10 @@
     android:background="@color/colorPrimaryDark"
     tools:context=".Activities.HomeActivity">
 
-    <fragment
-        android:id="@+id/roster_fragment"
-        android:name="com.purduerugby.jwlehman93.purduerugbyapp_android.fragments.RosterFragment"
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"></FrameLayout>
 
     <ListView
         android:id="@+id/menu_drawer"

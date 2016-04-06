@@ -49,7 +49,7 @@ public class RosterAdapter extends BaseAdapter {
         TextView name = (TextView) convertView.findViewById(R.id.roster_player_name);
         name.setText(players.get(position).getFirstName() + " " + players.get(position).getLastName());
         TextView positionTitle = (TextView) convertView.findViewById(R.id.roster_player_position);
-        positionTitle.setTextKeepState(Integer.toString(players.get(position).getPostion()));
+        positionTitle.setTextKeepState(players.get(position).getPostion());
         return convertView;
     }
 }
