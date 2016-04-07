@@ -7,14 +7,16 @@
         android:id="@+id/roster_player_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24dp"
+        android:textColor="@color/colorPrimary"
         />
 
     <TextView
         android:id="@+id/roster_player_position"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textSize="16dp"
+        android:textColor="@color/colorPrimary"/>
 
 
 </LinearLayout>

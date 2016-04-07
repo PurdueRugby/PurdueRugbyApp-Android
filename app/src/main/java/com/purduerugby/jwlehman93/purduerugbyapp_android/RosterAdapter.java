@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.purduerugby.jwlehman93.purduerugbyapp_android.PlayerProvider;
-import com.purduerugby.jwlehman93.purduerugbyapp_android.R;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.model.Player;
 
 import java.util.List;
@@ -22,7 +20,7 @@ public class RosterAdapter extends BaseAdapter {
 
     public RosterAdapter(Context context) {
         this.context = context;
-        players = PlayerProvider.getPlayers();
+        players = RosterProvider.getPlayers();
     }
 
     @Override

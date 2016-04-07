@@ -8,11 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.purduerugby.jwlehman93.purduerugbyapp_android.PlayerProvider;
+import com.purduerugby.jwlehman93.purduerugbyapp_android.RosterProvider;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.R;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.model.Player;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by jwlehman on 4/4/16.
@@ -29,7 +27,7 @@ public class PlayerBioFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.playerbio_fragment, container, false);
         Bundle args = getArguments();
-        Player selectedPlayer = PlayerProvider.getPlayers().get(args.getInt("playerPos"));
+        Player selectedPlayer = RosterProvider.getPlayers().get(args.getInt("playerPos"));
         setTextViews(layout, selectedPlayer);
         return layout;
     }

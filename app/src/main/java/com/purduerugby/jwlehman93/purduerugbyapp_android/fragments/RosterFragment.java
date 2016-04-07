@@ -1,8 +1,5 @@
 package com.purduerugby.jwlehman93.purduerugbyapp_android.fragments;
 
-import android.app.FragmentTransaction;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,13 +10,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.purduerugby.jwlehman93.purduerugbyapp_android.PlayerProvider;
+import com.purduerugby.jwlehman93.purduerugbyapp_android.RosterProvider;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.R;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.RosterAdapter;
-import com.purduerugby.jwlehman93.purduerugbyapp_android.model.Player;
-
-import java.util.HashMap;
-import java.util.List;
 
 
 public class RosterFragment extends Fragment implements AdapterView.OnItemClickListener {
@@ -46,6 +39,6 @@ public class RosterFragment extends Fragment implements AdapterView.OnItemClickL
         transaction.replace(R.id.fragment_container, playerFrag);
         transaction.addToBackStack(null);
         transaction.commit();
-        Toast.makeText(getActivity(), PlayerProvider.getPlayers().get(position).getFirstName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), RosterProvider.getPlayers().get(position).getFirstName(), Toast.LENGTH_SHORT).show();
     }
 }

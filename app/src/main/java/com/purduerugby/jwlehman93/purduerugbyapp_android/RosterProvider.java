@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by jwlehman on 4/2/16.
  */
-public abstract class PlayerProvider {
+public abstract class RosterProvider {
 
     private static List<Player> players = new ArrayList<Player>() {{
 
