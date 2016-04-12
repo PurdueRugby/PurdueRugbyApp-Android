@@ -1,4 +1,4 @@
-package com.purduerugby.jwlehman93.purduerugbyapp_android;
+package com.purduerugby.jwlehman93.purduerugbyapp_android.services;
 
 import com.purduerugby.jwlehman93.purduerugbyapp_android.model.Player;
 

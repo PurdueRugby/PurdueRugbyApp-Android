@@ -1,4 +1,4 @@
-package com.purduerugby.jwlehman93.purduerugbyapp_android;
+package com.purduerugby.jwlehman93.purduerugbyapp_android.listeners;
 
 import android.app.Activity;
 import android.content.Context;

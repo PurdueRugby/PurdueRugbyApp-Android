@@ -1,4 +1,4 @@
-package com.purduerugby.jwlehman93.purduerugbyapp_android;
+package com.purduerugby.jwlehman93.purduerugbyapp_android.providers;
 
 import java.util.ArrayList;
 import java.util.List;

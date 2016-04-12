@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.purduerugby.jwlehman93.purduerugbyapp_android.DrawerItemClickListener;
-import com.purduerugby.jwlehman93.purduerugbyapp_android.DrawerMenuItemProvider;
+import com.purduerugby.jwlehman93.purduerugbyapp_android.listeners.DrawerItemClickListener;
+import com.purduerugby.jwlehman93.purduerugbyapp_android.providers.DrawerMenuItemProvider;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.R;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.fragments.RosterFragment;
 

@@ -1,4 +1,4 @@
-package com.purduerugby.jwlehman93.purduerugbyapp_android;
+package com.purduerugby.jwlehman93.purduerugbyapp_android.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.purduerugby.jwlehman93.purduerugbyapp_android.R;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.model.Player;
+import com.purduerugby.jwlehman93.purduerugbyapp_android.providers.RosterProvider;
 
 import java.util.List;
 

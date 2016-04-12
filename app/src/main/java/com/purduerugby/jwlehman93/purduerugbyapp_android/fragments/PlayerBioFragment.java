@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.purduerugby.jwlehman93.purduerugbyapp_android.RosterProvider;
+import com.purduerugby.jwlehman93.purduerugbyapp_android.providers.RosterProvider;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.R;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.model.Player;
 

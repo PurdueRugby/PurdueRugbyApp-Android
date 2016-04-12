@@ -7,16 +7,12 @@
     android:background="@color/colorPrimaryDark"
     tools:context=".Activities.HomeActivity">
 
-    <FrameLayout
-        android:id="@+id/main_content_frame"
+    <ListView
+        android:id="@+id/calendar_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/vintagebannerinverse"
-            android:layout_alignParentTop="true"/>
-    </FrameLayout>
+        android:layout_height="match_parent"
+        android:divider="@color/colorPrimary"
+        android:dividerHeight="1dp"></ListView>
 
     <ListView
         android:id="@+id/menu_drawer"

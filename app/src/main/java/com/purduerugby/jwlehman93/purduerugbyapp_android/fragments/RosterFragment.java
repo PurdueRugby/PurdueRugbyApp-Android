@@ -10,9 +10,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.purduerugby.jwlehman93.purduerugbyapp_android.RosterProvider;
+import com.purduerugby.jwlehman93.purduerugbyapp_android.providers.RosterProvider;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.R;
-import com.purduerugby.jwlehman93.purduerugbyapp_android.RosterAdapter;
+import com.purduerugby.jwlehman93.purduerugbyapp_android.adapters.RosterAdapter;
 
 
 public class RosterFragment extends Fragment implements AdapterView.OnItemClickListener {
