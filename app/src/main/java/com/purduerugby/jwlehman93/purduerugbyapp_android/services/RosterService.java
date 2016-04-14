@@ -34,7 +34,7 @@ public interface RosterService {
                           @Field("position") String position, @Field("hometown") String hometown,
                           @Field("year") String year);
 
-    @DELETE
+    @DELETE("roster/{player_id}")
     Call <Player> deleteUser();
 
 }
