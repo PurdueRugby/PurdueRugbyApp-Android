@@ -8,17 +8,17 @@ public class Player {
     private String lastName;
     private String height;
     private int weight;
-    private String postion;
+    private String position;
     private String year;
     private String hometown;
     private String homestate;
 
-    public Player(String firstName, String lastName, String height, int weight, String postion, String year, String hometown, String homestate) {
+    public Player(String firstName, String lastName, String height, int weight, String position, String year, String hometown, String homestate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.height = height;
         this.weight = weight;
-        this.postion = postion;
+        this.position = position;
         this.year = year;
         this.hometown = hometown;
         this.homestate = homestate;
@@ -64,12 +64,12 @@ public class Player {
         this.lastName = lastName;
     }
 
-    public String getPostion() {
-        return postion;
+    public String getPosition() {
+        return position;
     }
 
-    public void setPostion(String postion) {
-        this.postion = postion;
+    public void setPosition(String postion) {
+        this.position = postion;
     }
 
     public String getYear() {

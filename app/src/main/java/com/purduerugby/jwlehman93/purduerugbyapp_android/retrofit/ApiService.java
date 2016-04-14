@@ -1,4 +1,4 @@
-package com.purduerugby.jwlehman93.purduerugbyapp_android.services;
+package com.purduerugby.jwlehman93.purduerugbyapp_android.retrofit;
 
 import com.purduerugby.jwlehman93.purduerugbyapp_android.model.Player;
 
@@ -15,7 +15,7 @@ import retrofit2.http.PUT;
 /**
  * Created by jwlehman on 4/7/16.
  */
-public interface RosterService {
+public interface ApiService {
     @GET("roster")
     Call<List<Player>> listPlayers();
 
