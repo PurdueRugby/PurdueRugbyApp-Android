@@ -22,9 +22,13 @@ public class ApiServiceManager {
 
     public ApiServiceManager() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://purdue-rugby-android.herokuapp.com")
+                .baseUrl("https://purdue-rugby-android.herokuapp.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         mApiServiceInstance = retrofit.create(ApiService.class);
+    }
+
+    public ApiService getApiServiceInstance() {
+        return mApiServiceInstance;
     }
 }

@@ -4,24 +4,42 @@ package com.purduerugby.jwlehman93.purduerugbyapp_android.model;
  * Created by jwlehman on 4/2/16.
  */
 public class Player {
-    private String firstName;
-    private String lastName;
-    private String height;
-    private int weight;
-    private String position;
-    private String year;
-    private String hometown;
-    private String homestate;
+    String _id;
+    String name;
+    String height;
+    String weight;
+    String position;
+    String year;
+    String hometown;
+    String homestate;
 
-    public Player(String firstName, String lastName, String height, int weight, String position, String year, String hometown, String homestate) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Player() {
+        name = "";
+        height = "";
+        weight = "";
+        position = "";
+        year = "";
+        hometown = "";
+        homestate = "";
+        _id = "";
+    }
+    public Player(String id, String name, String height, String weight, String position, String year, String hometown, String homestate) {
+        this._id = id;
+        this.name = name;
         this.height = height;
         this.weight = weight;
         this.position = position;
         this.year = year;
         this.hometown = hometown;
         this.homestate = homestate;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getHeight() {
@@ -32,11 +50,11 @@ public class Player {
         this.height = height;
     }
 
-    public int getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
@@ -48,20 +66,12 @@ public class Player {
         this.homestate = homestate;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPosition() {

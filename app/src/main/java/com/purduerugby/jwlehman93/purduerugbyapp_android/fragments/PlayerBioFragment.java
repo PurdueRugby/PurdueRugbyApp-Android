@@ -8,40 +8,71 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.purduerugby.jwlehman93.purduerugbyapp_android.providers.RosterProvider;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.R;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.model.Player;
+import com.purduerugby.jwlehman93.purduerugbyapp_android.retrofit.ApiService;
+import com.purduerugby.jwlehman93.purduerugbyapp_android.singletons.ApiServiceManager;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import timber.log.Timber;
 
 /**
  * Created by jwlehman on 4/4/16.
  */
 public class PlayerBioFragment extends Fragment{
-    TextView firstName;
-    TextView lastName;
-    TextView position;
-    TextView homeTown;
-    TextView year;
+    private Player selectedPlayer;
+    private TextView firstName;
+    private TextView lastName;
+    private TextView position;
+    private TextView homeTown;
+    private TextView year;
+    private View layout;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.playerbio_fragment, container, false);
+        layout = inflater.inflate(R.layout.playerbio_fragment, container, false);
         Bundle args = getArguments();
-        Player selectedPlayer = RosterProvider.getPlayers().get(args.getInt("playerPos"));
-        setTextViews(layout, selectedPlayer);
+        ApiService apiService = ApiServiceManager.getInstance().getApiServiceInstance();
+        Timber.d(args.getString("playerId"));
+        Call<Player> call = apiService.getPlayer(args.getString("playerId"));
+        call.enqueue(new Callback<Player>() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                if(response.isSuccessful()) {
+                    Timber.d("In Method" + ((Player) response.body()).get_id());
+                    selectedPlayer = (Player) response.body();
+                    setTextViews(layout, selectedPlayer);
+
+                }
+                else {
+                    selectedPlayer = new Player();
+                    Timber.e("Error getting Player");
+                }
+            }
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                Timber.e("Error" + t.getMessage());
+                selectedPlayer = new Player();
+
+            }
+        });
         return layout;
     }
 
 
     public void setTextViews(View layout, Player player) {
+        String name = player.getName();
         firstName = (TextView) layout.findViewById(R.id.firstname_text);
-        firstName.setText(player.getFirstName());
+        firstName.setText(name.split(" ")[0]);
         lastName = (TextView) layout.findViewById(R.id.lastname_text);
-        lastName.setText(player.getLastName());
+        lastName.setText(name.split(" ")[1]);
         position = (TextView) layout.findViewById(R.id.position_text);
-        position.setText("Position: " + player.getPostion());
+        position.setText("Position: " + player.getPosition());
         homeTown = (TextView) layout.findViewById(R.id.hometown_text);
-        homeTown.setText("Hometown: " + player.getPostion());
+        homeTown.setText("Hometown: " + player.getHometown() + ", " + player.getHomestate());
         year = (TextView) layout.findViewById(R.id.year_text);
         year.setText("Year in School: " + player.getYear());
     }

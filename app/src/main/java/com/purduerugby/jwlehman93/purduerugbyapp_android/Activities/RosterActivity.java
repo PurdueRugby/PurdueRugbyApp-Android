@@ -28,7 +28,6 @@ public class RosterActivity extends AppCompatActivity {
         drawerListView = (ListView) findViewById(R.id.menu_drawer);
         drawerListView.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_item, drawerMenuItems));
         drawerListView.setOnItemClickListener(new DrawerItemClickListener(this.getApplicationContext()));
-
         if(findViewById(R.id.fragment_container) != null) {
             if(savedInstanceState != null)
                 return;
@@ -38,4 +37,5 @@ public class RosterActivity extends AppCompatActivity {
                     .commit();
         }
     }
+
 }
