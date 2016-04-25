@@ -36,7 +36,7 @@ public class RosterFragment extends Fragment implements AdapterView.OnItemClickL
         View layout = inflater.inflate(R.layout.roster_list, container, false);
         ApiService apiService = ApiServiceManager.getInstance().getApiServiceInstance();
         rosterList = (ListView) layout.findViewById(R.id.roster_list);
-        Call<List<Player>> call = apiService.listPlayers();
+        Call<List<Player>> call = apiService.getPlayers();
         call.enqueue(new Callback<List<Player>>() {
             @Override
             public void onResponse(Call call, Response response) {

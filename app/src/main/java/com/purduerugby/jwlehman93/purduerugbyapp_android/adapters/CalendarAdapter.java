@@ -24,9 +24,9 @@ public class CalendarAdapter extends BaseAdapter{
     private Context context;
     private List<CalendarItem> calendarItems;
 
-    public CalendarAdapter(Context context) {
+    public CalendarAdapter(Context context, List<CalendarItem> calendarItems) {
         this.context = context;
-        calendarItems = CalendarItemProvider.getCalendarItems();
+        this.calendarItems = calendarItems;
     }
 
     @Override

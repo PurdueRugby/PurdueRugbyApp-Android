@@ -13,6 +13,8 @@ import com.purduerugby.jwlehman93.purduerugbyapp_android.model.Player;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.retrofit.ApiService;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.singletons.ApiServiceManager;
 
+import org.w3c.dom.Text;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,6 +27,8 @@ public class PlayerBioFragment extends Fragment{
     private Player selectedPlayer;
     private TextView firstName;
     private TextView lastName;
+    private TextView height;
+    private TextView weight;
     private TextView position;
     private TextView homeTown;
     private TextView year;
@@ -56,7 +60,6 @@ public class PlayerBioFragment extends Fragment{
             public void onFailure(Call call, Throwable t) {
                 Timber.e("Error" + t.getMessage());
                 selectedPlayer = new Player();
-
             }
         });
         return layout;
@@ -69,6 +72,10 @@ public class PlayerBioFragment extends Fragment{
         firstName.setText(name.split(" ")[0]);
         lastName = (TextView) layout.findViewById(R.id.lastname_text);
         lastName.setText(name.split(" ")[1]);
+        height = (TextView) layout.findViewById(R.id.height_text);
+        height.setText(player.getHeight());
+        weight = (TextView) layout.findViewById(R.id.weight_text);
+        weight.setText(player.getWeight());
         position = (TextView) layout.findViewById(R.id.position_text);
         position.setText("Position: " + player.getPosition());
         homeTown = (TextView) layout.findViewById(R.id.hometown_text);

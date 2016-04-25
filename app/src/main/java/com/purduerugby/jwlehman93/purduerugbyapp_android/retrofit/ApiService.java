@@ -1,5 +1,6 @@
 package com.purduerugby.jwlehman93.purduerugbyapp_android.retrofit;
 
+import com.purduerugby.jwlehman93.purduerugbyapp_android.model.CalendarItem;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.model.Player;
 
 import java.util.List;
@@ -19,7 +20,7 @@ import retrofit2.http.Path;
  */
 public interface ApiService {
     @GET("/roster")
-    Call<List<Player>> listPlayers();
+    Call<List<Player>> getPlayers();
 
     @GET("/roster/{player_id}")
     Call <Player> getPlayer(@Path("player_id") String _id);
@@ -38,5 +39,8 @@ public interface ApiService {
 
     @DELETE("/roster/{player_id}")
     Call <Player> deleteUser(@Path("player_id") String _id);
+
+    @GET("/calendar")
+    Call<List<CalendarItem>> getCalendar();
 
 }
