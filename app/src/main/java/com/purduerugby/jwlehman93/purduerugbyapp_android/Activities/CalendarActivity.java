@@ -68,7 +68,7 @@ protected void onCreate(Bundle savedInstanceState) {
             }
             @Override
             public void onFailure(Call call, Throwable t) {
-                Timber.e("Something went wrong getting calendar");
+                Timber.e("Something went wrong getting calendar" + t.getMessage());
                 calendarListview.setAdapter(new CalendarAdapter(getApplicationContext(), new ArrayList<CalendarItem>()));
             }
         });

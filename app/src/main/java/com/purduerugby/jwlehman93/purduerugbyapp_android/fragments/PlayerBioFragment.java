@@ -46,7 +46,7 @@ public class PlayerBioFragment extends Fragment{
             @Override
             public void onResponse(Call call, Response response) {
                 if(response.isSuccessful()) {
-                    Timber.d("In Method" + ((Player) response.body()).get_id());
+                    Timber.d("In Method %s", ((Player) response.body()).get_id());
                     selectedPlayer = (Player) response.body();
                     setTextViews(layout, selectedPlayer);
 
@@ -58,7 +58,7 @@ public class PlayerBioFragment extends Fragment{
             }
             @Override
             public void onFailure(Call call, Throwable t) {
-                Timber.e("Error" + t.getMessage());
+                Timber.e("Error %s", t.getMessage());
                 selectedPlayer = new Player();
             }
         });
@@ -73,14 +73,14 @@ public class PlayerBioFragment extends Fragment{
         lastName = (TextView) layout.findViewById(R.id.lastname_text);
         lastName.setText(name.split(" ")[1]);
         height = (TextView) layout.findViewById(R.id.height_text);
-        height.setText(player.getHeight());
+        height.setText(String.format(getString(R.string.bio_height), player.getHeight()));
         weight = (TextView) layout.findViewById(R.id.weight_text);
-        weight.setText(player.getWeight());
+        weight.setText(String.format(getString(R.string.bio_weight),player.getWeight()));
         position = (TextView) layout.findViewById(R.id.position_text);
-        position.setText("Position: " + player.getPosition());
+        position.setText(String.format(getString(R.string.bio_position), player.getPosition()));
         homeTown = (TextView) layout.findViewById(R.id.hometown_text);
-        homeTown.setText("Hometown: " + player.getHometown() + ", " + player.getHomestate());
+        homeTown.setText(String.format(getString(R.string.bio_hometown),player.getHometown(), player.getHomestate()));
         year = (TextView) layout.findViewById(R.id.year_text);
-        year.setText("Year in School: " + player.getYear());
+        year.setText(String.format(getString(R.string.bio_year), player.getYear()));
     }
 }

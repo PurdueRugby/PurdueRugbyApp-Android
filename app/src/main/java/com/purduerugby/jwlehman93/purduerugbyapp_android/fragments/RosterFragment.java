@@ -41,6 +41,7 @@ public class RosterFragment extends Fragment implements AdapterView.OnItemClickL
             @Override
             public void onResponse(Call call, Response response) {
                 if(response.isSuccessful()) {
+                    Timber.d("Retrieved roster successfully");
                     rosterList.setAdapter(new RosterAdapter(getActivity(), (List<Player>) response.body()));
                 }
                 else {
