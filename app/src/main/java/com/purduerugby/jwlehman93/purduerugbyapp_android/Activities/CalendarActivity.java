@@ -5,13 +5,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
-import android.widget.GridView;
 import android.widget.ListView;
 
 import com.purduerugby.jwlehman93.purduerugbyapp_android.adapters.CalendarAdapter;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.listeners.DrawerItemClickListener;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.model.CalendarItem;
-import com.purduerugby.jwlehman93.purduerugbyapp_android.providers.CalendarItemProvider;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.providers.DrawerMenuItemProvider;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.R;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.retrofit.ApiService;

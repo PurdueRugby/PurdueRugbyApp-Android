@@ -1,7 +1,6 @@
 package com.purduerugby.jwlehman93.purduerugbyapp_android.adapters;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +9,7 @@ import android.widget.TextView;
 
 import com.purduerugby.jwlehman93.purduerugbyapp_android.R;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.model.CalendarItem;
-import com.purduerugby.jwlehman93.purduerugbyapp_android.providers.CalendarItemProvider;
 
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
