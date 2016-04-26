@@ -8,5 +8,7 @@
     <string name="bio_year">Year in School: %1$s</string>
     <string name="bio_height"><b>HT:</b> %1$s</string>
     <string name="bio_weight"><b>WT:</b> %1$s</string>
+    <string name="open_drawer">Open navigation drawer</string>
+    <string name="close_drawer">Close navigation drawer</string>
 
 </resources>
