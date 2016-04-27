@@ -25,7 +25,7 @@ import retrofit2.Response;
 import timber.log.Timber;
 
 
-public class RosterFragment extends Fragment implements AdapterView.OnItemClickListener   {
+public class RosterListFragment extends Fragment implements AdapterView.OnItemClickListener   {
 
 
     private ListView rosterList;
