@@ -1,6 +1,5 @@
 package com.purduerugby.jwlehman93.purduerugbyapp_android.model;
 
-import org.joda.time.DateTime;
 
 /**
  * Created by jwlehman on 4/7/16.

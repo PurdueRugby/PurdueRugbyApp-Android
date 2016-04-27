@@ -4,42 +4,82 @@ package com.purduerugby.jwlehman93.purduerugbyapp_android.model;
  * Created by jwlehman on 4/2/16.
  */
 public class Player {
-    private String firstName;
-    private String lastName;
-    private String postion;
-    private String year;
-    private String hometown;
+    String _id;
+    String name;
+    String height;
+    String weight;
+    String position;
+    String year;
+    String hometown;
+    String homestate;
 
-    public Player(String firstName, String lastName, String postion, String year, String hometown) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.postion = postion;
+    public Player() {
+        name = "";
+        height = "";
+        weight = "";
+        position = "";
+        year = "";
+        hometown = "";
+        homestate = "";
+        _id = "";
+    }
+    public Player(String id, String name, String height, String weight, String position, String year, String hometown, String homestate) {
+        this._id = id;
+        this.name = name;
+        this.height = height;
+        this.weight = weight;
+        this.position = position;
         this.year = year;
         this.hometown = hometown;
+        this.homestate = homestate;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String get_id() {
+        return _id;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getHeight() {
+        return height;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setHeight(String height) {
+        this.height = height;
     }
 
-    public String getPostion() {
-        return postion;
+    public String getWeight() {
+        return weight;
     }
 
-    public void setPostion(String postion) {
-        this.postion = postion;
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getHomestate() {
+        return homestate;
+    }
+
+    public void setHomestate(String homestate) {
+        this.homestate = homestate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String postion) {
+        this.position = postion;
     }
 
     public String getYear() {

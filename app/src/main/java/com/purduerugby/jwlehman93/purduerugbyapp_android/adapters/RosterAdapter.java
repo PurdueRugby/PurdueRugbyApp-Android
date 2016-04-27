@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.purduerugby.jwlehman93.purduerugbyapp_android.R;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.model.Player;
-import com.purduerugby.jwlehman93.purduerugbyapp_android.providers.RosterProvider;
 
 import java.util.List;
 
@@ -20,9 +19,9 @@ public class RosterAdapter extends BaseAdapter {
     private Context context;
     private List<Player> players;
 
-    public RosterAdapter(Context context) {
+    public RosterAdapter(Context context, List<Player> players) {
         this.context = context;
-        players = RosterProvider.getPlayers();
+        this.players = players;
     }
 
     @Override
@@ -47,9 +46,9 @@ public class RosterAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.roster_item, parent, false);
         }
         TextView name = (TextView) convertView.findViewById(R.id.roster_player_name);
-        name.setText(players.get(position).getFirstName() + " " + players.get(position).getLastName());
+        name.setText(players.get(position).getName());
         TextView positionTitle = (TextView) convertView.findViewById(R.id.roster_player_position);
-        positionTitle.setTextKeepState(players.get(position).getPostion());
+        positionTitle.setText(players.get(position).getPosition());
         return convertView;
     }
 }

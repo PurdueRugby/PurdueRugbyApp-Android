@@ -1,0 +1,80 @@
+package com.purduerugby.jwlehman93.purduerugbyapp_android.Activities;
+
+import android.content.res.Configuration;
+import android.support.annotation.Nullable;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.purduerugby.jwlehman93.purduerugbyapp_android.R;
+import com.purduerugby.jwlehman93.purduerugbyapp_android.listeners.DrawerItemClickListener;
+import com.purduerugby.jwlehman93.purduerugbyapp_android.providers.DrawerMenuItemProvider;
+
+import java.util.List;
+
+public class BaseActivity extends AppCompatActivity {
+    private List<String> drawerMenuItems;
+    protected DrawerLayout leftDrawerLayout;
+    private ListView drawerListView;
+    private ActionBarDrawerToggle drawerToggle;
+    private String activityTitle;
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.base_layout);
+        drawerListView = (ListView) findViewById(R.id.menu_drawer);
+        leftDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerMenuItems = DrawerMenuItemProvider.getMenuItems();
+        drawerListView = (ListView) findViewById(R.id.menu_drawer);
+        drawerListView.setAdapter(new ArrayAdapter<>(this, R.layout.drawer_item, drawerMenuItems));
+        drawerListView.setOnItemClickListener(new DrawerItemClickListener(this.getApplicationContext()));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        activityTitle = getTitle().toString();
+        drawerToggle = new ActionBarDrawerToggle(this, leftDrawerLayout, R.string.open_drawer, R.string.close_drawer) {
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                getSupportActionBar().setTitle("Navigation");
+                invalidateOptionsMenu();
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                getSupportActionBar().setTitle(activityTitle);
+                invalidateOptionsMenu();
+            }
+        };
+        drawerToggle.setDrawerIndicatorEnabled(true);
+        leftDrawerLayout.addDrawerListener(drawerToggle);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(drawerToggle.onOptionsItemSelected(item))
+            return true;
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        drawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
+}

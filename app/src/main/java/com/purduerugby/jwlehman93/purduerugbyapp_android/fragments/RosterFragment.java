@@ -10,12 +10,23 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.purduerugby.jwlehman93.purduerugbyapp_android.providers.RosterProvider;
+import com.purduerugby.jwlehman93.purduerugbyapp_android.model.Player;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.R;
 import com.purduerugby.jwlehman93.purduerugbyapp_android.adapters.RosterAdapter;
+import com.purduerugby.jwlehman93.purduerugbyapp_android.retrofit.ApiService;
+import com.purduerugby.jwlehman93.purduerugbyapp_android.singletons.ApiServiceManager;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import timber.log.Timber;
 
 
-public class RosterFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class RosterFragment extends Fragment implements AdapterView.OnItemClickListener   {
+
 
     private ListView rosterList;
 
@@ -23,22 +34,46 @@ public class RosterFragment extends Fragment implements AdapterView.OnItemClickL
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.roster_list, container, false);
+        ApiService apiService = ApiServiceManager.getInstance().getApiServiceInstance();
         rosterList = (ListView) layout.findViewById(R.id.roster_list);
-        rosterList.setAdapter(new RosterAdapter(getActivity()));
+        Call<List<Player>> call = apiService.getPlayers();
+        call.enqueue(new Callback<List<Player>>() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                if(response.isSuccessful()) {
+                    Timber.d("Retrieved roster successfully");
+                    rosterList.setAdapter(new RosterAdapter(getActivity(), (List<Player>) response.body()));
+                }
+                else {
+                    Timber.e("Error" + response.errorBody());
+
+                    rosterList.setAdapter(new RosterAdapter(getActivity(), new ArrayList<Player>()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                rosterList.setAdapter(new RosterAdapter(getActivity(), new ArrayList<Player>()));
+                Timber.e("Error" + t.getMessage());
+            }
+        });
         rosterList.setOnItemClickListener(this);
         return layout;
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Player player = (Player) parent.getItemAtPosition(position);
         PlayerBioFragment playerFrag = new PlayerBioFragment();
         Bundle args = new Bundle();
-        args.putInt("playerPos", position);
+        args.putString("playerId", player.get_id());
         playerFrag.setArguments(args);
         android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, playerFrag);
         transaction.addToBackStack(null);
         transaction.commit();
-        Toast.makeText(getActivity(), RosterProvider.getPlayers().get(position).getFirstName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), player.getName(), Toast.LENGTH_SHORT).show();
     }
+
+
 }
