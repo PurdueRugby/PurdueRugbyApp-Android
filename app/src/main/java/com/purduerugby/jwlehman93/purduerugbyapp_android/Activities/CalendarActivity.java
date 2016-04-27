@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -23,52 +24,39 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import timber.log.Timber;
 
-public class CalendarActivity extends AppCompatActivity {
-    private List<String> drawerMenuItems;
-    private ListView drawerListView;
-    private DrawerLayout leftDrawerLayout;
+public class CalendarActivity extends BaseActivity {
     private ListView calendarListview;
-    private List<String> dates;
-    private List<String> descriptions;
-    private List<String> results;
-    private List<CalendarItem> calendarItems;
     private Context mContext;
 
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
-        mContext = this;
-
-        //implement drawer
-        drawerMenuItems = DrawerMenuItemProvider.getMenuItems();
-        leftDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawerListView = (ListView) findViewById(R.id.menu_drawer);
-        drawerListView.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_item, drawerMenuItems));
-        drawerListView.setOnItemClickListener(new DrawerItemClickListener(this.getApplicationContext()));
-        //implement calendar
-        calendarListview = (ListView) findViewById(R.id.calendar_listview);
-        ApiService apiService = ApiServiceManager.getInstance().getApiServiceInstance();
-        Call <List<CalendarItem>> call = apiService.getCalendar();
-        call.enqueue(new Callback<List<CalendarItem>>() {
-            @Override
-            public void onResponse(Call call, Response response) {
-                if(response.isSuccessful()){
-                    Timber.d("Calendar retrieved successfully");
-                    Timber.d("Response" + response.body().toString());
-                    calendarListview.setAdapter(new CalendarAdapter(mContext, (List<CalendarItem>) response.body()));
-                }
-                else {
-                    Timber.e("Calendar retrieval unsuccessful");
-                    calendarListview.setAdapter(new CalendarAdapter(getApplicationContext(), new ArrayList<CalendarItem>()));
-                }
+    View contentView = getLayoutInflater().inflate(R.layout.activity_calendar, null, false);
+    leftDrawerLayout.addView(contentView, 0);
+    //implement calendar
+    mContext = this;
+    calendarListview = (ListView) findViewById(R.id.calendar_listview);
+    ApiService apiService = ApiServiceManager.getInstance().getApiServiceInstance();
+    Call <List<CalendarItem>> call = apiService.getCalendar();
+    call.enqueue(new Callback<List<CalendarItem>>() {
+        @Override
+        public void onResponse(Call call, Response response) {
+            if(response.isSuccessful()){
+                Timber.d("Calendar retrieved successfully");
+                Timber.d("Response: %s" , response.body().toString());
+                calendarListview.setAdapter(new CalendarAdapter(mContext, (List<CalendarItem>) response.body()));
             }
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                Timber.e("Something went wrong getting calendar" + t.getMessage());
+            else {
+                Timber.e("Calendar retrieval unsuccessful");
                 calendarListview.setAdapter(new CalendarAdapter(getApplicationContext(), new ArrayList<CalendarItem>()));
             }
-        });
-    }
+        }
+        @Override
+        public void onFailure(Call call, Throwable t) {
+            Timber.e("Something went wrong getting calendar: %s", t.getMessage());
+            calendarListview.setAdapter(new CalendarAdapter(getApplicationContext(), new ArrayList<CalendarItem>()));
+        }
+    });
+}
 }
