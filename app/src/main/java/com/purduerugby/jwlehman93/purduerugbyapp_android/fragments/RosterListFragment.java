@@ -1,5 +1,6 @@
 package com.purduerugby.jwlehman93.purduerugbyapp_android.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,6 +30,7 @@ public class RosterListFragment extends Fragment implements AdapterView.OnItemCl
 
 
     private ListView rosterList;
+    private ProgressDialog mProgressDialog;
 
     @Nullable
     @Override
@@ -36,6 +38,10 @@ public class RosterListFragment extends Fragment implements AdapterView.OnItemCl
         View layout = inflater.inflate(R.layout.roster_list, container, false);
         ApiService apiService = ApiServiceManager.getInstance().getApiServiceInstance();
         rosterList = (ListView) layout.findViewById(R.id.roster_list);
+        mProgressDialog = new ProgressDialog(getActivity());
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
         Call<List<Player>> call = apiService.getPlayers();
         call.enqueue(new Callback<List<Player>>() {
             @Override
@@ -43,10 +49,13 @@ public class RosterListFragment extends Fragment implements AdapterView.OnItemCl
                 if(response.isSuccessful()) {
                     Timber.d("Retrieved roster successfully");
                     rosterList.setAdapter(new RosterAdapter(getActivity(), (List<Player>) response.body()));
+                    if(mProgressDialog.isShowing())
+                        mProgressDialog.dismiss();
                 }
                 else {
                     Timber.e("Error" + response.errorBody());
-
+                    if(mProgressDialog.isShowing())
+                        mProgressDialog.dismiss();
                     rosterList.setAdapter(new RosterAdapter(getActivity(), new ArrayList<Player>()));
                 }
             }

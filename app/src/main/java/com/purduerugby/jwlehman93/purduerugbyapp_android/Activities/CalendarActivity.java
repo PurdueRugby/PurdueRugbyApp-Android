@@ -1,5 +1,6 @@
 package com.purduerugby.jwlehman93.purduerugbyapp_android.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +27,7 @@ import timber.log.Timber;
 
 public class CalendarActivity extends BaseActivity {
     private ListView calendarListview;
-    private Context mContext;
+    private ProgressDialog mProgressDialog;
 
 
 @Override
@@ -35,8 +36,11 @@ protected void onCreate(Bundle savedInstanceState) {
     View contentView = getLayoutInflater().inflate(R.layout.activity_calendar, null, false);
     leftDrawerLayout.addView(contentView, 0);
     //implement calendar
-    mContext = this;
     calendarListview = (ListView) findViewById(R.id.calendar_listview);
+    mProgressDialog = new ProgressDialog(this);
+    mProgressDialog.setIndeterminate(true);
+    mProgressDialog.setMessage("Loading...");
+    mProgressDialog.show();
     ApiService apiService = ApiServiceManager.getInstance().getApiServiceInstance();
     Call <List<CalendarItem>> call = apiService.getCalendar();
     call.enqueue(new Callback<List<CalendarItem>>() {
@@ -45,17 +49,23 @@ protected void onCreate(Bundle savedInstanceState) {
             if(response.isSuccessful()){
                 Timber.d("Calendar retrieved successfully");
                 Timber.d("Response: %s" , response.body().toString());
-                calendarListview.setAdapter(new CalendarAdapter(mContext, (List<CalendarItem>) response.body()));
+                calendarListview.setAdapter(new CalendarAdapter(CalendarActivity.this.getApplicationContext(), (List<CalendarItem>) response.body()));
+                if(mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
             }
             else {
                 Timber.e("Calendar retrieval unsuccessful");
                 calendarListview.setAdapter(new CalendarAdapter(getApplicationContext(), new ArrayList<CalendarItem>()));
+                if(mProgressDialog.isShowing())
+                    mProgressDialog.dismiss();
             }
         }
         @Override
         public void onFailure(Call call, Throwable t) {
             Timber.e("Something went wrong getting calendar: %s", t.getMessage());
             calendarListview.setAdapter(new CalendarAdapter(getApplicationContext(), new ArrayList<CalendarItem>()));
+            if(mProgressDialog.isShowing())
+                mProgressDialog.dismiss();
         }
     });
 }

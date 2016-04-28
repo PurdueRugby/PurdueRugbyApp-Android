@@ -1,5 +1,6 @@
 package com.purduerugby.jwlehman93.purduerugbyapp_android.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -33,6 +34,7 @@ public class PlayerBioFragment extends Fragment{
     private TextView homeTown;
     private TextView year;
     private View layout;
+    private ProgressDialog mProgressDialog;
 
     @Nullable
     @Override
@@ -41,6 +43,10 @@ public class PlayerBioFragment extends Fragment{
         Bundle args = getArguments();
         ApiService apiService = ApiServiceManager.getInstance().getApiServiceInstance();
         Timber.d(args.getString("playerId"));
+        mProgressDialog = new ProgressDialog(getActivity());
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
         Call<Player> call = apiService.getPlayer(args.getString("playerId"));
         call.enqueue(new Callback<Player>() {
             @Override
@@ -49,9 +55,13 @@ public class PlayerBioFragment extends Fragment{
                     Timber.d("In Method %s", ((Player) response.body()).get_id());
                     selectedPlayer = (Player) response.body();
                     setTextViews(layout, selectedPlayer);
+                    if(mProgressDialog.isShowing())
+                        mProgressDialog.dismiss();
 
                 }
                 else {
+                    if(mProgressDialog.isShowing())
+                        mProgressDialog.dismiss();
                     selectedPlayer = new Player();
                     Timber.e("Error getting Player");
                 }
@@ -60,6 +70,7 @@ public class PlayerBioFragment extends Fragment{
             public void onFailure(Call call, Throwable t) {
                 Timber.e("Error %s", t.getMessage());
                 selectedPlayer = new Player();
+                
             }
         });
         return layout;
